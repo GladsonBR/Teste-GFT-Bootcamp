@@ -1,4 +1,4 @@
-package com.company.Dio.dominio;
+package com.company.Dio.FilmesEmCartaz;
 
 public enum GeneroTipo {
         TERROR("TERRO"), ROMANCE("ROMANCE"),ACAO("AÇAO"), COMEDIA("COMEDIA");

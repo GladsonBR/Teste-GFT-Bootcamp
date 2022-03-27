@@ -1,4 +1,4 @@
-package com.company.Dio.dominio;
+package com.company.Dio.FilmesEmCartaz;
 
 
 import java.util.ArrayList;

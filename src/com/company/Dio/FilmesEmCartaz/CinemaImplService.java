@@ -1,8 +1,5 @@
-package com.company.Dio.dominio;
+package com.company.Dio.FilmesEmCartaz;
 
-import javax.swing.text.html.HTMLDocument;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class CinemaImplService implements CinemaService {
