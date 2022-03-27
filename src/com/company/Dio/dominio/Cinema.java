@@ -9,7 +9,16 @@ public class Cinema {
 
     private String nome;
     private String endereco;
-    private List<Filme> filmesEmCar = new ArrayList<>();
+    private List<Filme> filmesEmCar= new ArrayList<>();
+
+    public Cinema() {
+    }
+
+    public Cinema(String nome, String endereco) {
+        this.nome = nome;
+        this.endereco = endereco;
+
+    }
 
     @Override
     public String toString() {

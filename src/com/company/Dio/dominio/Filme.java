@@ -59,9 +59,9 @@ public class Filme {
 
     @Override
     public String toString() {
-        return  "Nome do Filme='" + titulo + '\'' +
-                ", Genero=" + genero +
-                ", duracaoEmMinutos=" + duracaoEmMinutos +
-                ", horarioSessao='" + horarioSessao + '\'';
+        return  "Nome do Filme= '" + titulo + '\'' +
+                ", Genero= " + genero +
+                ", Duracao em Minutos=" + duracaoEmMinutos +
+                ", Horario da Sessao='" + horarioSessao + '\'';
     }
 }

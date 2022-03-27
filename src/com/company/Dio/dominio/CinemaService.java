@@ -5,9 +5,11 @@ import java.util.List;
 
 public interface CinemaService {
 
-    void adicionarFilme(Filme filme, int i);
+
+    void adicionarFilme(String tituloF, String horarioSessao, Enum generoFilme, int duracaoEmMinutos);
+
     void removerFilme(String id);
-    int tamanhoArray();
+
 
 
 

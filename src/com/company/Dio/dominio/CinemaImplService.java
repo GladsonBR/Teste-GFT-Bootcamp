@@ -1,23 +1,26 @@
 package com.company.Dio.dominio;
 
+import javax.swing.text.html.HTMLDocument;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CinemaImplService implements CinemaService {
     Cinema cinema = new Cinema();
     FilmeImplService filmeImplService = new FilmeImplService();
+    Filme filme;
 
 
-    int i=0;
     @Override
-    public void adicionarFilme(Filme filme,int i) {
-       cinema.getFilmesEmCar().add(filme);
+    public void adicionarFilme(String tituloF, String horarioSessao, Enum generoFilme, int duracaoEmMinutos) {
 
-         if(cinema.getFilmesEmCar().size()==i) {
-             for (Filme lista:cinema.getFilmesEmCar()) {
-                 System.out.println(lista);
-             }
+        filme = new Filme(tituloF, generoFilme, duracaoEmMinutos, horarioSessao);
 
+        cinema.getFilmesEmCar().add(filme);
+
+        List<Filme> filmesCartaz = cinema.getFilmesEmCar();
+        for (Filme l: filmesCartaz) {
+           System.out.println(l);
         }
 
     }
@@ -27,12 +30,9 @@ public class CinemaImplService implements CinemaService {
         List<Filme> cinemaRemovido = cinema.getFilmesEmCar();
         cinemaRemovido.removeIf(cinemaRemov -> cinemaRemov.getTitulo().equalsIgnoreCase(id));
 
-        for (Filme lista:cinema.getFilmesEmCar()) {
-            System.out.println(lista);              
-        }                                              
+        for (Filme lista : cinema.getFilmesEmCar()) {
+            System.out.println(lista);
+        }
     }
 
-    public int tamanhoArray(){
-        return cinema.getFilmesEmCar().size();
-    }
 }

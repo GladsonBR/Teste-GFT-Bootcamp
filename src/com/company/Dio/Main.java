@@ -2,9 +2,9 @@ package com.company.Dio;
 
 import com.company.Dio.dominio.*;
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
@@ -14,102 +14,107 @@ public class Main {
         Cinema cinema = new Cinema();
         FilmeService filmeMetodos = new FilmeImplService();
         Filme filme = new Filme();
-        List<Filme> dadosFilme = new ArrayList<>();
 
-
+        int opt=0;
         Scanner ler = new Scanner(System.in);
-        int opt;
-        cinema.setNome("GF Cinema");
-        cinema.setEndereco("Rua Carlos Alberto 1254");
+        Scanner lerStr = new Scanner(System.in);
 
-        Filme filme1 = new Filme();
-        filme1.setTitulo("Sexto Sentido");
-        filme1.setGenero(GeneroTipo.TERROR);
-        filme1.setHorarioSessao("7:30");
-        filme1.setDuracaoEmMinutos(120);
-        int i=1;
-
-        Filme filme2 = new Filme();
-        filme2.setTitulo("Blade");
-        filme2.setGenero(GeneroTipo.ACAO);
-        filme2.setHorarioSessao("8:30");
-        filme2.setDuracaoEmMinutos(120);
-        i++;
-
-        Filme filme3 = new Filme();
-        filme3.setTitulo("Vingadores");
-        filme3.setGenero(GeneroTipo.ACAO);
-        filme3.setHorarioSessao("8:45");
-        filme3.setDuracaoEmMinutos(150);
-        i++;
-
-        cinemaMetodos.adicionarFilme(filme1, i);
-        cinemaMetodos.adicionarFilme(filme2, i);
-        cinemaMetodos.adicionarFilme(filme3, i);
+        String tituloF = "";
+        String horarioSessao="" , genero="";
+        Enum generoFilme = null;
+        int duracaoEmMinutos=0;
+        int i=0;
+        Enum Generos;
 
 
+        String nomeCin = "GFT Filmes";
+        String enderecoCin = "Av Carlos Antonio 2415 Pumpalha";
+        cinema = new Cinema(nomeCin, enderecoCin);
+        System.out.println(cinema);
         do {
 
-            System.out.println("...Filme  Adicionados automaticamente \n Digite a opção desejada:\n2_Remover filme\n3_Calcular Duração\n4_retornar Hora de encerramento da sessão\n6_Sair\n");
-            opt = ler.nextInt();
-
-            switch (opt) {
-                case 2:
-                    System.out.println("Digite o nome do filme para deletar: ");
-                    String titulo = ler.next();
-                    System.out.println("Deseja mesmo remover o filme? Digite 'S' para sim e 'N' para não");
-                    if (ler.next().equalsIgnoreCase("S"))
-                        cinemaMetodos.removerFilme(titulo);
-
-                    else {
-                        System.out.println("Filme não deletado");
-                    }
-                    break;
-                case 3:
-
-                    System.out.println(filme);
-                    System.out.println("Digite o nome do filme para calcular duração");
-                    String nome = ler.next();
-                    int duracaoSessao = 0;
+            try {
+                System.out.println(" ================== ");
+                System.out.println("Voce deseja adicionar um Filme? tecle 'S' para SIM e 'N' para Não");
+                String optStr = lerStr.nextLine();
+                if (optStr.equalsIgnoreCase("S")){
 
 
-                    if (filme1.getTitulo().equalsIgnoreCase(nome)) {
-                        duracaoSessao = filme1.getDuracaoEmMinutos();
+                    try {
+                        System.out.println("Digite o nome do Filme");
+                        tituloF = lerStr.nextLine();
+                        System.out.println("Digite o horario da Sessão");
+                        horarioSessao = lerStr.nextLine();
+                        System.out.println("Digite a duração em minutos");
+                        duracaoEmMinutos = ler.nextInt();
+                        System.out.println("Digite o Gênero do Filmes: \n Terror \nRomance \nAção \nComedia");
 
-                    } else if (filme2.getTitulo().equalsIgnoreCase(nome)){
-                        duracaoSessao = filme2.getDuracaoEmMinutos();
-                    }else if(filme3.getTitulo().equalsIgnoreCase(nome)){
-                        duracaoSessao = filme3.getDuracaoEmMinutos();
-                    }
+                        genero = lerStr.nextLine();
+                        if (genero.equalsIgnoreCase("Terror")) {
+                            generoFilme = GeneroTipo.TERROR;
+                        } else if (genero.equalsIgnoreCase("Romance")) {
+                            generoFilme = GeneroTipo.ROMANCE;
+                        } else if (genero.equalsIgnoreCase("Ação")) {
+                            generoFilme = GeneroTipo.ACAO;
+                        } else if (genero.equalsIgnoreCase("Comédia")) {
+                            generoFilme = GeneroTipo.COMEDIA;
+                        }
 
-                    filmeMetodos.calcularDuracaoEmHoras(duracaoSessao);
-                    break;
-                case 4:
-                    System.out.println("Digite o nome do filme para saber horario que terminara o filme");
-                    String nomeFil = ler.next();
-                    String horaSecao="";
-                    int duracao = 0;
+                        cinemaMetodos.adicionarFilme(tituloF, horarioSessao, generoFilme, duracaoEmMinutos);
+                        i++;
 
-                    if (filme1.getTitulo().equalsIgnoreCase(nomeFil)) {
-                        horaSecao = filme1.getHorarioSessao();
-                        duracao = filme1.getDuracaoEmMinutos();
+                    } catch (NullPointerException e) {
+                        System.out.println("Digite dados válidos");
 
-                    } else if (filme2.getTitulo().equalsIgnoreCase(nomeFil)){
-                        horaSecao = filme2.getHorarioSessao();
-                        duracao = filme2.getDuracaoEmMinutos();
-                    }else if(filme3.getTitulo().equalsIgnoreCase(nomeFil)){
-                        horaSecao = filme3.getHorarioSessao();
-                        duracao = filme3.getDuracaoEmMinutos();
                     }
 
-                    filmeMetodos.retornaHoraQueAcaba(horaSecao, duracao);
-                    break;
-                case 5:
-                    int qtnDados = cinemaMetodos.tamanhoArray();
-                    System.out.printf("O numero de dados são %d", qtnDados);
+                }else {
+                    System.out.println("Digite a opção desejada:\n 1_Remover filme"+
+                            " \n2_Calcular Duração\n3_retornar Hora de encerramento da sessão\n" +
+                            "4_Sair\n");
+
+
+                    opt = ler.nextInt();
+
+                    switch (opt) {
+                        case 1:
+                            System.out.println("Digite o nome do filme para deletar: ");
+                            String tituloFl = ler.next();
+                            System.out.println("Deseja mesmo remover o filme? Digite 'S' para sim e 'N' para não");
+                            if (ler.next().equalsIgnoreCase("S"))
+                                cinemaMetodos.removerFilme(tituloFl);
+
+                            else {
+                                System.out.println("Filme não deletado");
+                            }
+                            break;
+
+                        case 2:
+
+                            System.out.println("Digite o nome do filme para calcular duração");
+                            String nome = ler.next();
+                            filme= new Filme(tituloF, generoFilme, duracaoEmMinutos, horarioSessao);
+
+                            filmeMetodos.calcularDuracaoEmHoras(nome,filme);
+
+
+                            break;
+                        case 3:
+                            System.out.println("Digite o nome do filme para saber horario que terminará");
+                            String nomeFil = ler.next();
+                            filmeMetodos.retornaHoraQueAcaba(nomeFil, filme);
+
+
+                            break;
+
+                    }
+                }
+
+            } catch (InputMismatchException e) {
+               System.out.println("Favor digitar uma opção válida");
+
             }
-            System.out.println("\nDigite exit para Sair");
-        } while (opt != 6);
+            System.out.println("\nDigite S para Sair");
+        } while (opt != 4);
     }
-
 }

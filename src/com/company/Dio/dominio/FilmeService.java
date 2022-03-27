@@ -1,7 +1,7 @@
 package com.company.Dio.dominio;
 
 public interface FilmeService {
-    void calcularDuracaoEmHoras(int duracaoEmMinutos);
-    void retornaHoraQueAcaba(String horaSessao, int duracaoMin);
+    void calcularDuracaoEmHoras(String nomeFilme,Filme filme);
+    void retornaHoraQueAcaba(String nomeFilme,Filme filme);
 
 }
